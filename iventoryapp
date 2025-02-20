@@ -1,1 +1,23 @@
 import streamlit
+from spellchecker import SpellChecker
+import re
+from PIL import Image as PILImage
+from PIL import Image, ImageFilter, ImageOps, ImageEnhance
+
+#Link de la página https://evalhv-uvgdqtpnuheurqmrzdnnnb.streamlit.app
+
+# Cargar las palabras clave y consejos desde los archivos JSON
+def load_indicators(filepath="indicators.json"):
+    with open(filepath, "r", encoding="utf-8") as file:
+        return json.load(file)
+def load_advice(filepath="advice.json"):
+    with open(filepath, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+# Cargar indicadores y consejos al inicio del script
+indicators = load_indicators()
+advice = load_advice()
+
+# Uso del código
+background_path = "Fondo reporte.png"
+portada_path= "Portada Analizador.png"
