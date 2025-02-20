@@ -1,0 +1,1 @@
+# inventarios2025
