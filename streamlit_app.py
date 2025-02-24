@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 import pandas as pd
 
-Link de la herramienta: https://inventarios2025-dnkclvqmpknfzuumjzwnne.streamlit.app/
+#Link de la herramienta: https://inventarios2025-dnkclvqmpknfzuumjzwnne.streamlit.app/
 
 # Función para conectar a la base de datos
 def get_db_connection():
