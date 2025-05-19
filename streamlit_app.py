@@ -79,13 +79,13 @@ with open(logo, "rb") as image_file:
     Logo_bytes = image_file.read()
 
 # Codificar a base64 para insertarlo con HTML
-logo_base64 = base64.b64encode(Logo_bytes).decode()
+Logo_base64 = base64.b64encode(Logo_bytes).decode()
 with st.sidebar:
     # Logo centrado y redimensionado
     st.markdown(
         f"""
         <div style="text-align: center;">
-            <img src="data:image/png;base64,{logo_base64}" 
+            <img src="data:image/png;base64,{Logo_base64}" 
                  alt="Logo" width="300"/>
         </div>
         """,
