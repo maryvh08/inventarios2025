@@ -72,8 +72,8 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
-st.title("INVENTARya")
 with st.sidebar:
+    st.title("INVENTARya")
     # Acerca de la herramienta
     with st.expander("Acerca de la Herramienta", expanded=False):
         st.markdown("""
