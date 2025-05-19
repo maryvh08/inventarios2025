@@ -39,6 +39,14 @@ if productos_file and demandas_file and inventario_file:
         # 📌 Agregar inventario actual
         resumen = resumen.merge(inventario_df, on='ID_Producto')
 
+        # 📌 Agrupar inventario para obtener el stock total por producto
+        inventario_agrupado = inventario_df.groupby('ID_Producto').agg(
+            Cantidad_Stock=('Cantidad_Stock', 'sum')
+        ).reset_index()
+
+        # 📌 Agregar inventario actual
+        resumen = resumen.merge(inventario_agrupado, on='ID_Producto')
+
         # 📌 Parámetros fijos
         Z = 1.65          # Nivel de servicio 95%
         Lead_Time = 1     # en meses
