@@ -35,7 +35,7 @@ if archivo:
 
         # 📊 Mostrar resultados
         st.subheader("📌 Resultados por Producto:")
-        st.dataframe(resumen[['ID_Demanda','ID_Producto', 'Demanda_Promedio', 'Desviacion', 'SS', 'ROP', 'EOQ']].round(2))
+        st.dataframe(resumen[['ID_Producto', 'Demanda_Promedio', 'Desviacion', 'SS', 'ROP', 'EOQ']].round(2))
 
 else:
     st.info("⬆️ Por favor, sube un archivo CSV para continuar.")
