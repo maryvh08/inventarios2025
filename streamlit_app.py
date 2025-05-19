@@ -10,10 +10,15 @@ demandas_file = st.file_uploader("Sube archivo de Demandas mensuales (.csv)", ty
 inventario_file = st.file_uploader("Sube archivo de Inventario Inicial (.csv)", type=["csv"])
 
 if productos_file and demandas_file and inventario_file:
-    # 📌 Leer CSVs
+    # 📌 Leer CSVs y limpiar nombres de columnas
     productos_df = pd.read_csv(productos_file)
+    productos_df.columns = productos_df.columns.str.strip()
+
     demandas_df = pd.read_csv(demandas_file)
+    demandas_df.columns = demandas_df.columns.str.strip()
+
     inventario_df = pd.read_csv(inventario_file)
+    inventario_df.columns = inventario_df.columns.str.strip()
 
     # 📌 Verificar columnas necesarias
     columnas_demandas = {'ID_Demanda','ID_Producto','Año','Mes','Cantidad'}
@@ -27,34 +32,22 @@ if productos_file and demandas_file and inventario_file:
     elif not columnas_inventario.issubset(inventario_df.columns):
         st.error(f"El archivo de inventario debe tener las columnas: {', '.join(columnas_inventario)}")
     else:
-        # 📌 Leer CSVs y limpiar nombres de columnas
-        productos_df = pd.read_csv(productos_file)
-        productos_df.columns = productos_df.columns.str.strip()
-        
-        demandas_df = pd.read_csv(demandas_file)
-        demandas_df.columns = demandas_df.columns.str.strip()
-        
-        inventario_df = pd.read_csv(inventario_file)
-        inventario_df.columns = inventario_df.columns.str.strip()
-        
         # 📌 Calcular demanda promedio y desviación estándar
         resumen = demandas_df.groupby('ID_Producto').agg(
             Demanda_Promedio=('Cantidad', 'mean'),
             Desviacion=('Cantidad', 'std')
         ).reset_index()
-        
-        st.write(resumen.head())  # Diagnóstico rápido
 
         # 📌 Agregar nombre del producto
-        resumen = resumen.merge(productos_df, on='ID_Producto')
-        
+        resumen = resumen.merge(productos_df, on='ID_Producto', how='left')
+
         # 📌 Agrupar inventario para obtener el stock total por producto
         inventario_agrupado = inventario_df.groupby('ID_Producto').agg(
             Cantidad_Stock=('Cantidad_Stock', 'sum')
         ).reset_index()
-        
+
         # 📌 Agregar inventario actual
-        resumen = resumen.merge(inventario_agrupado, on='ID_Producto')
+        resumen = resumen.merge(inventario_agrupado, on='ID_Producto', how='left')
 
         # 📌 Parámetros fijos
         Z = 1.65          # Nivel de servicio 95%
@@ -72,7 +65,8 @@ if productos_file and demandas_file and inventario_file:
 
         # 📊 Mostrar resultados
         st.subheader("📌 Resultados por Producto:")
-        st.dataframe(resumen[['ID_Producto', 'Nombre', 'Demanda_Promedio', 'Desviacion', 'SS', 'ROP', 'EOQ', 'Cantidad_Stock', '¿Requiere Pedido?']].round(2))
+        st.dataframe(resumen[['ID_Producto', 'Nombre', 'Demanda_Promedio', 'Desviacion',
+                              'SS', 'ROP', 'EOQ', 'Cantidad_Stock', '¿Requiere Pedido?']].round(2))
 
 else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
