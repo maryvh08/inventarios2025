@@ -27,18 +27,24 @@ if productos_file and demandas_file and inventario_file:
     elif not columnas_inventario.issubset(inventario_df.columns):
         st.error(f"El archivo de inventario debe tener las columnas: {', '.join(columnas_inventario)}")
     else:
-        # 📌 Calcular demanda promedio y desviación estándar
-        resumen = demandas_df.groupby('ID_Producto').agg(
-            Demanda_Promedio=('Cantidad', 'mean'),
-            Desviacion=('Cantidad', 'std')
-        ).reset_index()
-
+        # 📌 Leer CSVs y limpiar nombres de columnas
+        productos_df = pd.read_csv(productos_file)
+        productos_df.columns = productos_df.columns.str.strip()
+        
+        demandas_df = pd.read_csv(demandas_file)
+        demandas_df.columns = demandas_df.columns.str.strip()
+        
+        inventario_df = pd.read_csv(inventario_file)
+        inventario_df.columns = inventario_df.columns.str.strip()
+        
         # 📌 Calcular demanda promedio y desviación estándar
         resumen = demandas_df.groupby('ID_Producto').agg(
             Demanda_Promedio=('Cantidad', 'mean'),
             Desviacion=('Cantidad', 'std')
         ).reset_index()
         
+        st.write(resumen.head())  # Diagnóstico rápido
+
         # 📌 Agregar nombre del producto
         resumen = resumen.merge(productos_df, on='ID_Producto')
         
