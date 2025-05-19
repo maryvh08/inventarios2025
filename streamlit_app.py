@@ -17,8 +17,8 @@ if productos_file and demandas_file and inventario_file:
 
     # 📌 Verificar columnas necesarias
     columnas_demandas = {'ID_Demanda','ID_Producto','Año','Mes','Cantidad'}
-    columnas_productos = {'ID_Producto','Nombre'}
-    columnas_inventario = {'ID_Producto','Inventario_Inicial'}
+    columnas_productos = {'ID_Producto','Nombre','Unidad_Medida','ID_Proveedor'}
+    columnas_inventario = {'ID_Producto','Inventario_Inicial','Cantidad_Stock','Ubicacion_Almacen','Fecha_Actualizacion'}
 
     if not columnas_demandas.issubset(demandas_df.columns):
         st.error(f"El archivo de demandas debe tener las columnas: {', '.join(columnas_demandas)}")
