@@ -33,17 +33,20 @@ if productos_file and demandas_file and inventario_file:
             Desviacion=('Cantidad', 'std')
         ).reset_index()
 
+        # 📌 Calcular demanda promedio y desviación estándar
+        resumen = demandas_df.groupby('ID_Producto').agg(
+            Demanda_Promedio=('Cantidad', 'mean'),
+            Desviacion=('Cantidad', 'std')
+        ).reset_index()
+        
         # 📌 Agregar nombre del producto
         resumen = resumen.merge(productos_df, on='ID_Producto')
-
-        # 📌 Agregar inventario actual
-        resumen = resumen.merge(inventario_df, on='ID_Producto')
-
+        
         # 📌 Agrupar inventario para obtener el stock total por producto
         inventario_agrupado = inventario_df.groupby('ID_Producto').agg(
             Cantidad_Stock=('Cantidad_Stock', 'sum')
         ).reset_index()
-
+        
         # 📌 Agregar inventario actual
         resumen = resumen.merge(inventario_agrupado, on='ID_Producto')
 
