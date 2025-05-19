@@ -72,7 +72,7 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
-Logo INTENTARya= 
+Logo INTENTARya= "Logo INVENTARya.png"
 with st.sidebar:
     # Logo centrado y redimensionado
     st.markdown(
