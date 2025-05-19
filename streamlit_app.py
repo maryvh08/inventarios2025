@@ -73,7 +73,7 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
-logo= "Logo INVENTARya.png"
+logo= "logo.png"
 # Leer el archivo como bytes
 with open(logo, "rb") as image_file:
     logo_bytes = image_file.read()
