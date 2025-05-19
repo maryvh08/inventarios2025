@@ -7,7 +7,7 @@ import tempfile
 st.title("📊 Sistema de Inventarios con EOQ, ROP e Inventario Actual desde Base de Datos")
 
 # 📁 Subir archivo de base de datos SQLite
-db_file = st.file_uploader("Sube archivo de base de datos SQLite (.db)", type=["db"])
+db_file = st.file_uploader("Sube archivo de base de datos SQL", type=["sql"])
 
 if db_file:
     # 📌 Guardar archivo temporalmente
