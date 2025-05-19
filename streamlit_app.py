@@ -73,20 +73,20 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
-logo= "logo.png"
+Logo= "Logo.png"
 # Leer el archivo como bytes
 with open(logo, "rb") as image_file:
-    logo_bytes = image_file.read()
+    Logo_bytes = image_file.read()
 
 # Codificar a base64 para insertarlo con HTML
-logo_base64 = base64.b64encode(logo_bytes).decode()
+logo_base64 = base64.b64encode(Logo_bytes).decode()
 with st.sidebar:
     # Logo centrado y redimensionado
     st.markdown(
         f"""
         <div style="text-align: center;">
             <img src="data:image/png;base64,{logo_base64}" 
-                 alt="logo" width="300"/>
+                 alt="Logo" width="300"/>
         </div>
         """,
         unsafe_allow_html=True
