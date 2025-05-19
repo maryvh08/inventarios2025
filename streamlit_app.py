@@ -75,7 +75,7 @@ else:
 # Sidebar con información y opciones
 Logo= "Logo.png"
 # Leer el archivo como bytes
-with open(logo, "rb") as image_file:
+with open(Logo, "rb") as image_file:
     Logo_bytes = image_file.read()
 
 # Codificar a base64 para insertarlo con HTML
