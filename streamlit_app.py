@@ -51,11 +51,11 @@ if productos_file and demandas_file and inventario_file:
         resumen['EOQ'] = np.sqrt((2 * resumen['Demanda_Promedio'] * S) / H)
 
         # 📌 Verificar si hace falta pedido
-        resumen['¿Requiere Pedido?'] = np.where(resumen['Inventario_Inicial'] <= resumen['ROP'], '✅ Sí', '❌ No')
+        resumen['¿Requiere Pedido?'] = np.where(resumen['Cantidad_Stock'] <= resumen['ROP'], '✅ Sí', '❌ No')
 
         # 📊 Mostrar resultados
         st.subheader("📌 Resultados por Producto:")
-        st.dataframe(resumen[['ID_Producto', 'Nombre', 'Demanda_Promedio', 'Desviacion', 'SS', 'ROP', 'EOQ', 'Inventario_Inicial', '¿Requiere Pedido?']].round(2))
+        st.dataframe(resumen[['ID_Producto', 'Nombre', 'Demanda_Promedio', 'Desviacion', 'SS', 'ROP', 'EOQ', 'Cantidad_Stock', '¿Requiere Pedido?']].round(2))
 
 else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
