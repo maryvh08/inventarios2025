@@ -86,7 +86,7 @@ with st.sidebar:
         f"""
         <div style="text-align: center;">
             <img src="data:image/png;base64,{logo_base64}" 
-                 alt="logo" width="150"/>
+                 alt="logo" width="300"/>
         </div>
         """,
         unsafe_allow_html=True
