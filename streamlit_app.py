@@ -96,7 +96,7 @@ with st.sidebar:
     # Acerca de la herramienta
     with st.expander("Acerca de la Herramienta", expanded=False):
         st.markdown("""
-        **Inventarya** es una herramienta para realizar calculos de los parámetros de inventario por medio de archivos .csv.
+        **Inventar S.A** es una herramienta para realizar calculos de los parámetros de inventario por medio de archivos .csv.
         
         Analiza automáticamente el contenido de los archivos.
         
