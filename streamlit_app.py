@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import base64
 
 st.title("📊 Sistema de Inventarios con EOQ, ROP e Inventario Actual")
 
