@@ -1,8 +1,7 @@
-PyMuPDF
-scikit-learn
-fpdf
-streamlit-multipage
 streamlit
+pandas
+numpy
+pyodbc
 pytesseract
 reportlab
 statsmodels
