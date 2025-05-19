@@ -12,7 +12,7 @@ if archivo:
     df = pd.read_csv(archivo)
 
     # 📌 Verificar columnas esperadas
-    columnas_esperadas = {'ID_Demand','ID_Producto', 'Nombre', 'Año', 'Mes', 'Cantidad'}
+    columnas_esperadas = {'ID_Demanda','ID_Producto', 'Nombre', 'Año', 'Mes', 'Cantidad'}
     if not columnas_esperadas.issubset(df.columns):
         st.error(f"El archivo debe tener las columnas: {', '.join(columnas_esperadas)}")
     else:
