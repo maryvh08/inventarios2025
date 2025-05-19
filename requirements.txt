@@ -2,4 +2,3 @@ streamlit
 pandas
 numpy
 pyodbc
-sqlite3
