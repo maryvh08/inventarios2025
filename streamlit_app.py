@@ -72,14 +72,14 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
-Logo INTENTARya= "Logo INVENTARya.png"
+Logo= "Logo INVENTARya.png"
 with st.sidebar:
     # Logo centrado y redimensionado
     st.markdown(
         f"""
         <div style="text-align: center;">
             <img src="data:image/png;base64,{logo_base64}" 
-                 alt="Logo INVENTARya" width="150"/>
+                 alt="Logo" width="150"/>
         </div>
         """,
         unsafe_allow_html=True
