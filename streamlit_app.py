@@ -17,9 +17,9 @@ if archivo:
         st.error(f"El archivo debe tener las columnas: {', '.join(columnas_esperadas)}")
     else:
         # 📌 Calcular demanda promedio y desviación estándar
-        resumen = df.groupby(['ID_Producto', 'Nombre']).agg(
-            Demanda_Promedio=('Cantidad', 'mean'),
-            Desviacion=('Cantidad', 'std')
+        resumen = df.groupby(['ID_Producto']).agg(
+        Demanda_Promedio=('Cantidad', 'mean'),
+        Desviacion=('Cantidad', 'std')
         ).reset_index()
 
         # 📌 Parámetros fijos
