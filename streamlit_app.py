@@ -73,6 +73,8 @@ else:
 
 # Sidebar con información y opciones
 Logo= "Logo INVENTARya.png"
+# Codificar a base64 para insertarlo con HTML
+logo_base64 = base64.b64encode(logo_bytes).decode()
 with st.sidebar:
     # Logo centrado y redimensionado
     st.markdown(
