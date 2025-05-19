@@ -72,8 +72,20 @@ else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
 
 # Sidebar con información y opciones
+Logo INTENTARya= 
 with st.sidebar:
-    st.title("INVENTARya")
+    # Logo centrado y redimensionado
+    st.markdown(
+        f"""
+        <div style="text-align: center;">
+            <img src="data:image/png;base64,{logo_base64}" 
+                 alt="Logo INVENTARya" width="150"/>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.write("")
     # Acerca de la herramienta
     with st.expander("Acerca de la Herramienta", expanded=False):
         st.markdown("""
