@@ -9,22 +9,20 @@ st.title("📊 Sistema de Inventarios con EOQ, ROP e Inventario Actual desde Arc
 sql_file = st.file_uploader("Sube archivo SQL (.sql)", type=["sql"])
 
 if sql_file:
-    # Leer contenido del archivo SQL
     sql_script = sql_file.read().decode('utf-8')
 
-    # Crear base de datos SQLite en archivo temporal
-    with tempfile.NamedTemporaryFile(suffix=".db", delete=False) as tmp_db_file:
-        db_path = tmp_db_file.name
+    # Crear archivo temporal para base de datos SQLite
+    tmp_db_file = tempfile.NamedTemporaryFile(suffix=".db", delete=False)
+    db_path = tmp_db_file.name
+    tmp_db_file.close()  # Muy importante cerrar aquí para evitar bloqueo
 
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
 
     try:
-        # Ejecutar el script SQL para crear tablas e insertar datos
         cursor.executescript(sql_script)
         conn.commit()
 
-        # Verificar tablas
         tables_query = "SELECT name FROM sqlite_master WHERE type='table';"
         tables = pd.read_sql_query(tables_query, conn)['name'].tolist()
 
@@ -33,17 +31,14 @@ if sql_file:
         if not set(tablas_necesarias).issubset(set(tables)):
             st.error(f"La base de datos debe contener las tablas: {', '.join(tablas_necesarias)}")
         else:
-            # Leer tablas
             productos_df = pd.read_sql_query("SELECT * FROM Productos", conn)
             demandas_df = pd.read_sql_query("SELECT * FROM Demandas", conn)
             inventario_df = pd.read_sql_query("SELECT * FROM Inventario", conn)
 
-            # Limpiar columnas
             productos_df.columns = productos_df.columns.str.strip()
             demandas_df.columns = demandas_df.columns.str.strip()
             inventario_df.columns = inventario_df.columns.str.strip()
 
-            # Validar columnas requeridas
             columnas_demandas = {'ID_Demanda','ID_Producto','Año','Mes','Cantidad'}
             columnas_productos = {'ID_Producto','Nombre','Unidad_Medida','ID_Proveedor'}
             columnas_inventario = {'ID_Producto','ID_Inventario','Cantidad_Stock','Ubicacion_Almacen','Fecha_Actualizacion'}
@@ -55,7 +50,6 @@ if sql_file:
             elif not columnas_inventario.issubset(inventario_df.columns):
                 st.error(f"La tabla Inventario debe tener las columnas: {', '.join(columnas_inventario)}")
             else:
-                # Calcular demanda promedio y desviación estándar
                 resumen = demandas_df.groupby('ID_Producto').agg(
                     Demanda_Promedio=('Cantidad', 'mean'),
                     Desviacion=('Cantidad', 'std')
