@@ -70,3 +70,24 @@ if productos_file and demandas_file and inventario_file:
 
 else:
     st.info("⬆️ Por favor, sube los 3 archivos CSV para continuar.")
+
+# Sidebar con información y opciones
+with st.sidebar:
+    # Acerca de la herramienta
+    with st.expander("Acerca de la Herramienta", expanded=False):
+        st.markdown("""
+        **Inventarya** es una herramienta para realizar calculos de los parámetros de inventario por medio de archivos .csv.
+        
+        Analiza automáticamente el contenido de los archivos.
+        
+        La evaluación considera los siguientes aspectos:
+        - Demanda Mensual
+        - Cantidad en stock
+        - Productos
+        - Información de adquisición
+        
+        Versión: 1.0.0
+        """)
+
+    st.write("---")
+
