@@ -7,7 +7,7 @@ st.title("📊 Sistema de Inventarios con EOQ, ROP e Inventario Actual")
 # 📁 Subir archivos CSV
 productos_file = st.file_uploader("Sube archivo de Productos (.csv)", type=["csv"])
 demandas_file = st.file_uploader("Sube archivo de Demandas mensuales (.csv)", type=["csv"])
-inventario_file = st.file_uploader("Sube archivo de Inventario Inicial (.csv)", type=["csv"])
+inventario_file = st.file_uploader("Sube archivo de Inventario (.csv)", type=["csv"])
 
 if productos_file and demandas_file and inventario_file:
     # 📌 Leer CSVs y limpiar nombres de columnas
