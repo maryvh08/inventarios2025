@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 import base64
 
+#Link:https://inventarios2025-dnkclvqmpknfzuumjzwnne.streamlit.app/
+
 st.title("📊 Sistema de Inventarios con EOQ, ROP e Inventario Actual")
 
 # 📁 Subir archivos CSV
